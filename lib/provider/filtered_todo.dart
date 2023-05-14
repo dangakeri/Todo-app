@@ -40,28 +40,28 @@ class FilteredTodos with ChangeNotifier {
     TodoSearch todoSearch,
     TodoList todoList,
   ) {
-    List<Todo> _filteredTodos;
+    List<Todo> filteredTodos;
     switch (todoFilter.State.filter) {
       case Filter.active:
-        _filteredTodos =
+        filteredTodos =
             todoList.State.todos.where((Todo todo) => !todo.completed).toList();
         break;
       case Filter.completed:
-        _filteredTodos =
+        filteredTodos =
             todoList.State.todos.where((Todo todo) => todo.completed).toList();
         break;
       case Filter.all:
       default:
-        _filteredTodos = todoList.State.todos;
+        filteredTodos = todoList.State.todos;
         break;
     }
     if (todoSearch.State.searchTerm.isEmpty) {
-      _filteredTodos = _filteredTodos
+      filteredTodos = filteredTodos
           .where((Todo todo) =>
               todo.desc.toLowerCase().contains(todoSearch.State.searchTerm))
           .toList();
     }
-    _state = _state.copyWith(filterTodos: _filteredTodos);
+    _state = _state.copyWith(filterTodos: filteredTodos);
     notifyListeners();
   }
 }
