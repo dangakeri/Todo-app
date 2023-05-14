@@ -20,9 +20,13 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'TODO',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple),
+        brightness: Brightness.light,
         useMaterial3: true,
       ),
+      themeMode: ThemeMode.system,
+      darkTheme: ThemeData(brightness: Brightness.dark),
       home: const TodosPage(),
     );
   }
