@@ -6,7 +6,7 @@ import '../models/todo_model.dart';
 
 class TodoListState extends Equatable {
   final List<Todo> todos;
-  TodoListState({
+  const TodoListState({
     required this.todos,
   });
   factory TodoListState.initial() {
@@ -35,6 +35,7 @@ class TodoListState extends Equatable {
 
 class TodoList with ChangeNotifier {
   TodoListState _state = TodoListState.initial();
+  // ignore: non_constant_identifier_names
   TodoListState get State => _state;
 
   void addTodo(String todoDesc) {

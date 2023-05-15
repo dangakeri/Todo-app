@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/provider/todo_filter.dart';
-
 import '../models/todo_model.dart';
 import 'todo_list.dart';
 import 'todo_search.dart';

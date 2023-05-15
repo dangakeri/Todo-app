@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/provider/todo_list.dart';
@@ -11,6 +10,7 @@ class ActiveTodoCountState extends Equatable {
     required this.activeTodoCount,
   });
 
+  @override
   List<Object> get props => [activeTodoCount];
   factory ActiveTodoCountState.initial() {
     return const ActiveTodoCountState(activeTodoCount: 0);
