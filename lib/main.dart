@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/provider/provider.dart';
-
 import 'pages/todos_page.dart';
-import 'provider/todo_filter.dart';
 
 void main() => runApp(const MyApp());
 

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class TodoSearchState extends Equatable {
   final String searchTerm;
-  TodoSearchState({
+  const TodoSearchState({
     required this.searchTerm,
   });
   factory TodoSearchState.initial() {
-    return TodoSearchState(searchTerm: 'searchTerm');
+    return const TodoSearchState(searchTerm: 'searchTerm');
   }
 
   @override
@@ -31,6 +31,7 @@ class TodoSearchState extends Equatable {
 class TodoSearch with ChangeNotifier {
   TodoSearchState _state = TodoSearchState.initial();
 
+  // ignore: non_constant_identifier_names
   TodoSearchState get State => _state;
   void setSearchTerm(String newSearchTerm) {
     _state = _state.copyWith(searchTerm: newSearchTerm);
