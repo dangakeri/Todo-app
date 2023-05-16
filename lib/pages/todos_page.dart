@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/utilis/debounce.dart';
 
 import '../models/todo_model.dart';
 import '../provider/provider.dart';
@@ -10,19 +11,19 @@ class TodosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             child: Column(
               children: [
-                TodoHeader(),
-                CreateTodo(),
-                SizedBox(height: 10),
+                const TodoHeader(),
+                const CreateTodo(),
+                const SizedBox(height: 10),
                 SearchAndFilterTodo(),
-                SizedBox(height: 10),
-                ShowTodo(),
+                const SizedBox(height: 10),
+                const ShowTodo(),
               ],
             ),
           ),
@@ -89,7 +90,8 @@ class _CreateTodoState extends State<CreateTodo> {
 }
 
 class SearchAndFilterTodo extends StatelessWidget {
-  const SearchAndFilterTodo({super.key});
+  SearchAndFilterTodo({super.key});
+  final debounce = Debounce(milliseconds: 1000);
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +106,9 @@ class SearchAndFilterTodo extends StatelessWidget {
           ),
           onChanged: (String? newSearchTerm) {
             if (newSearchTerm != null) {
-              context.read<TodoSearch>().setSearchTerm(newSearchTerm);
+              debounce.run(() {
+                context.read<TodoSearch>().setSearchTerm(newSearchTerm);
+              });
             }
           },
         ),
@@ -250,7 +254,7 @@ class _TodoItemState extends State<TodoItem> {
               return StatefulBuilder(
                   builder: (BuildContext context, StateSetter setState) {
                 return AlertDialog(
-                  title: Text('Edit Todo'),
+                  title: const Text('Edit Todo'),
                   content: TextField(
                     controller: textController,
                     autofocus: true,
@@ -261,7 +265,7 @@ class _TodoItemState extends State<TodoItem> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text('Cancel'),
+                      child: const Text('Cancel'),
                     ),
                     TextButton(
                       onPressed: () {
@@ -275,7 +279,7 @@ class _TodoItemState extends State<TodoItem> {
                           }
                         });
                       },
-                      child: Text('Edit'),
+                      child: const Text('Edit'),
                     ),
                   ],
                 );
