@@ -27,7 +27,9 @@ class _MyAppState extends State<MyApp> {
           create: (context) => TodoList(),
         ),
         ChangeNotifierProxyProvider<TodoList, ActiveTodoCount>(
-          create: (context) => ActiveTodoCount(),
+          create: (context) => ActiveTodoCount(
+              initialActiveTodoCount:
+                  context.read<TodoList>().State.todos.length),
           update: (
             BuildContext context,
             TodoList todoList,
